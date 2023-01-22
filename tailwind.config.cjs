@@ -6,7 +6,14 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        'popps': ['Poppins', 'sans-serif']
+      },
+      backgroundImage:{
+        'text': "url('/src/assets/endless-constellation.svg')"
+      }
+    },
   },
   plugins: [],
 }
