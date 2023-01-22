@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import Logo from '../assets/comments.png'
+import {FcGoogle} from 'react-icons/fc'
+import {auth} from '../firebase'
+import Login from '../components/Login'
+import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import Register from "./Register";
 
 const Welcome = () => {
-  const googleSignIn = () => {
-    console.log("You are trying to log in")
-  };
+
+  const [account, setAccount] = useState(true);
+
+  const changeState = ()=>{
+    setAccount(!account);
+  }
 
   return (
-    <main className="welcome font-">
-      <h2 className="text-red">Welcome to React Chat.</h2>
-      <p>Sign in with Google to chat with with your fellow React Developers.</p>
-      <button className="sign-in" onClick={googleSignIn}>
-        Sign-In
-      </button>
+    <main className="h-screen flex justify-center items-center">
+      <div className="w-[30%]">
+        <div className="logo flex items-center gap-2 justify-center mb-8">
+          <img src={Logo} alt="" className="h-[50px]"/>
+          <h1 className="font-bold text-2xl text-gray-300">Connect</h1>
+        </div>
+        {account ? (<Login changeAcc={changeState}/>): (<Register changeAcc={changeState}/>)}
+      </div>
     </main>
   );
 };

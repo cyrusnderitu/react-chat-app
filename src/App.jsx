@@ -10,8 +10,7 @@ function App() {
   const [user, loading] = useAuthState(auth);
   return (
     <div className="App">
-      <div className='mx-20'>
-        <NavBar />
+      <div className='bg-[#708238]'>
         {!user ? <Welcome /> : <ChatBox />}
       </div>
     </div>

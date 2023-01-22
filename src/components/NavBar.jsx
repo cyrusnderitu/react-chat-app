@@ -14,16 +14,16 @@ const NavBar = () => {
     auth.signOut();
   };
   return (
-    <nav className="flex justify-between items-center">
-      <h1>React Chat</h1>
+    <nav className="flex justify-between items-center h-14 bg-slate-500 text-white px-8">
+      <h1 className="font-semibold text-2xl">React Chat</h1>
       {user ? (
         <button onClick={signOut} type="button" className="flex items-center gap-2">
           <FcGoogle />
           Sign Out
         </button>
       ) : (
-        <button onClick={googleSignIn} className="flex items-center gap-2">
-          <FcGoogle />
+        <button onClick={googleSignIn} className="flex items-center gap-2 bg-cyan-500 px-2 rounded-md font-semibold">
+          <FcGoogle className="bg-white"/>
           Sign In
         </button>
       )}
