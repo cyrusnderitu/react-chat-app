@@ -7,8 +7,8 @@ const Register = ({changeAcc}) => {
   return (
     <div>
       <div className="cont">
-        <h4 className="text-gray-300 text-center font-semibold">Register</h4>
-        <p className="text-gray-600 text-center mb-4">
+        <h4 className="text-gray-300 text-center font-semibold text-xl">Register</h4>
+        <p className="text-gray-600 text-center mb-4 text-md">
           Register for an Account with Connect
         </p>
         <form className="text-gray-600 bg-[#8A9A5B] shadow-2xl p-8 w-full text-[16px] grid gap-6 mb-8 font-semibold outline-none">

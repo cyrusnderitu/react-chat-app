@@ -13,15 +13,19 @@ const Welcome = () => {
   const changeState = ()=>{
     setAccount(!account);
   }
+  const SignIn = ()=>{
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
+  }
 
   return (
-    <main className="h-screen flex justify-center items-center">
+    <main className="flex justify-center items-center h-full">
       <div className="w-[30%]">
         <div className="logo flex items-center gap-2 justify-center mb-8">
           <img src={Logo} alt="" className="h-[50px]"/>
           <h1 className="font-bold text-2xl text-gray-300">Connect</h1>
         </div>
-        {account ? (<Login changeAcc={changeState}/>): (<Register changeAcc={changeState}/>)}
+        {account ? (<Login changeAcc={changeState} SignIn={SignIn}/>): (<Register changeAcc={changeState}/>)}
       </div>
     </main>
   );

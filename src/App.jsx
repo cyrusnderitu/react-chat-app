@@ -10,7 +10,7 @@ function App() {
   const [user, loading] = useAuthState(auth);
   return (
     <div className="App">
-      <div className='bg-[#708238]'>
+      <div className='bg-[#708238] h-screen overflow-y-scroll'>
         {!user ? <Welcome /> : <ChatBox />}
       </div>
     </div>
