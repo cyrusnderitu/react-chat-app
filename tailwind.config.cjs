@@ -11,7 +11,8 @@ module.exports = {
         'popps': ['Poppins', 'sans-serif']
       },
       backgroundImage:{
-        'text': "url('/src/assets/endless-constellation.svg')"
+        'text': "url('/src/assets/endless-constellation.svg')",
+        'prof': "url('/src/assets/hollowed-boxes.svg')",
       }
     },
   },

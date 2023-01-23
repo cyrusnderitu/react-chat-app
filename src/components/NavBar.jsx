@@ -25,10 +25,10 @@ const NavBar = ({active, handleChange}) => {
     auth.signOut();
   };
   return (
-    <nav className="flex justify-between flex-col items-center h-full w-[7%] bg-slate-500 text-white py-8">
+    <nav className="flex justify-between flex-col items-center h-full w-[70px] bg-slate-500 text-white py-8">
       <div className="flex flex-col items-center">
         <img src={Logo} alt="" className="w-[30px] mb-8" />
-        <div className="nav_menu grid gap-8">
+        <div className="nav_menu flex flex-col items-center gap-8">
           <a className={`${active == "profile" ? 'active': ''} hover:cursor-pointer`} onClick={()=>{handleChange("profile")}}><RxAvatar  className="text-3xl"/></a>
           <a className={`${active == "chats" ? 'active': ''} hover:cursor-pointer`} onClick={()=>{handleChange("chats")}}><BsChatSquareDotsFill  className="text-3xl"/></a>
           <a className={`${active == "contacts" ? 'active': ''} hover:cursor-pointer`} onClick={()=>{handleChange("contacts")}}><TiContacts  className="text-3xl"/></a>
@@ -38,9 +38,9 @@ const NavBar = ({active, handleChange}) => {
       </div>
       
       <div className="flex flex-col items-center gap-6">
-        <a>{theme? (<BsFillSunFill className="text-2xl"/>): (<BsFillMoonFill className="text-2xl"/>)}</a>
+        <a>{theme? (<BsFillSunFill className="text-3xl"/>): (<BsFillMoonFill className="text-3xl"/>)}</a>
         <a className="relative">
-          <img src={user.photoURL} alt="" className="h-[30px] rounded-[50%] hover:cursor-pointer" onClick={()=>{setShow(!show)}}/>
+          <img src={user.photoURL} alt="" className="h-[35px] rounded-[50%] hover:cursor-pointer" onClick={()=>{setShow(!show)}}/>
           {show && <div className="absolute left-11 bottom-2 p-1 bg-slate-600 w-[100px]">
             <a className="flex items-center gap-1 hover:cursor-pointer">
               <ImProfile />
