@@ -38,10 +38,10 @@ const NavBar = ({active, handleChange}) => {
       </div>
       
       <div className="flex flex-col items-center gap-6">
-        <a>{theme? (<BsFillSunFill className="text-3xl"/>): (<BsFillMoonFill className="text-3xl"/>)}</a>
+        <a>{theme? (<BsFillSunFill className="text-3xl hover:cursor-pointer"/>): (<BsFillMoonFill className="text-3xl hover:cursor-pointer"/>)}</a>
         <a className="relative">
           <img src={user.photoURL} alt="" className="h-[35px] rounded-[50%] hover:cursor-pointer" onClick={()=>{setShow(!show)}}/>
-          {show && <div className="absolute left-11 bottom-2 p-1 bg-slate-600 w-[100px]">
+          {show && <div className="absolute left-12 bottom-0 p-2 bg-slate-600 w-[100px] grid gap-2 rounded-r-2xl rounded-tl-2xl">
             <a className="flex items-center gap-1 hover:cursor-pointer">
               <ImProfile />
               Profile

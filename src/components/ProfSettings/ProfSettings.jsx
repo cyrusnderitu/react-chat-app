@@ -28,10 +28,20 @@ const ProfSettings = ({ user }) => {
                 <BiDownArrow className={`${active == "about" && current ? "rotate-180": ''} cursor-pointer`}/>
               </h1>
             </div>
-            <p className={`${active == "about" && current ? "p-2": 'h-0'}`}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
-              numquam. Doloribus, nobis.
-            </p>
+            <div className={`${active == "about" && current ? "p-2": 'h-0'} grid gap-2`}>
+              <div>
+                <h2 className="text-white font-semibold">Name</h2>
+                <p >{user.displayName}</p>
+              </div>
+              <div>
+                <h2 className="text-white font-semibold">Email</h2>
+                <p>{user.email}</p>
+              </div>
+              <div>
+                <h2 className="text-white font-semibold">Location</h2>
+                <p>Nairobi, Kenya</p>
+              </div>
+            </div>
           </div>
           <div className="border-[1px] border-gray-500 rounded-md overflow-hidden">
             <div className="header hover:cursor-pointer" onClick={()=>{setActive("privacy"); if(active == "privacy"){setCurrent(!current)}}}>

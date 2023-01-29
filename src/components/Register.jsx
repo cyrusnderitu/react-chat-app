@@ -63,7 +63,10 @@ const Register = ({changeAcc}) => {
           <button className="font-semibold text-gray-300 bg-blue-600 py-2 rounded-md">
             Sign Up
           </button>
-          <p className="text-center"> By Registering you agree to <span className="text-green-500 hover:cursor-pointer">Terms of Use</span></p>
+          <div className="flex gap-2 items-start">
+            <input type="checkbox" name="" id="" required/>
+            <p className="-mt-1"> By Registering you agree to <span className="text-green-500 hover:cursor-pointer">Terms of Use</span></p>
+          </div>
         </form>
         <p className="text-center">Already have an existin account ? <span className="text-green-500 hover:cursor-pointer" onClick={()=>{changeAcc()}}>Signin</span></p>
       </div>

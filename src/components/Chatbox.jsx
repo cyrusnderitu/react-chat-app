@@ -15,10 +15,10 @@ const ChatBox = () => {
   }
 
   return (
-    <div className='h-full flex'>
+    <div className='flex h-screen'>
       <NavBar active={active} handleChange={handleChange}/>
       <Message active={active} user={user}/>
-      <TimeLine />
+      <TimeLine user={user}/>
     </div>
   )
 }
