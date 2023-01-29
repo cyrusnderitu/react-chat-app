@@ -1,19 +1,49 @@
-import React from 'react'
-import {AiOutlineArrowRight} from 'react-icons/ai'
+import React, { useState } from "react";
+import { AiOutlineArrowRight } from "react-icons/ai";
+import { auth, db } from "../../firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const Input = () => {
-  return (
-    <div className='sticky bottom-0 w-full'>
-      <div className="cont flex items-center justify-between bg-slate-200 h-14 px-4 py-8 rounded-t-xl">
-        <form className='w-[calc(100%-150px)]'>
-            <input type="text" name="" id="" placeholder='Type something ...' className='border-b-2 border-gray-300 indent-8 text-gray-300 w-full bg-transparent'/>
+  const [message, setMessage] = useState("");
+
+  const sendMessage = async (event) => {
+    event.preventDefault();
+    if (message.trim() === "") {
+      alert("Enter valid message");
+      return;
+    }
+    const { uid, displayName, photoURL } = auth.currentUser;
+    await addDoc(collection(db, "messages"), {
+      text: message,
+      name: displayName,
+      avatar: photoURL,
+      createdAt: serverTimestamp(),
+      uid,
+    });
+    setMessage("");
+  };
+
+   return (
+    <div className="sticky bottom-0 w-full">
+      <div className="cont bg-slate-200 h-14 p-4 rounded-t-xl">
+        <form className="flex items-center justify-between" onSubmit={(event) => sendMessage(event)}>
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="Type something ..."
+            className=" indent-8 w-full bg-transparent outline-none text-gray-800"
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          <div className="">
+            <button className="flex gap-2 border-none text-sm bg-sky-400 text-white p-2 rounded-lg items-center hover:cursor-pointer">
+              Send <AiOutlineArrowRight className="text-xl" />
+            </button>
+          </div>
         </form>
-        <div className=''>
-            <button className='flex gap-2 border-none text-sm bg-sky-400 text-white p-2 rounded-lg items-center hover:cursor-pointer'>Send <AiOutlineArrowRight className='text-xl' /></button>
-        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;

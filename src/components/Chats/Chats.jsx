@@ -39,7 +39,7 @@ const Chats = ({user}) => {
         </div> */}
         <div className="h-full">
           <h1 className="text-2xl text-white my-8">Messages</h1>
-          <div className="overflow-y-scroll h-[calc(100%-200px)] w-[calc(100%+32px)] -mr-8">
+          <div className="overflow-y-scroll h-[calc(100%-200px)] w-[calc(100%+32px)] -mr-8 chats">
             <div className="cont gap-4 flex flex-col justify-between">
               <div className="flex justify-between items-start hover:bg-slate-600 py-4 px-2 rounded-lg mr-6 hover:cursor-pointer">
                 <div className="flex items-center gap-x-2">
