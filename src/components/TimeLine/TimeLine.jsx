@@ -11,16 +11,10 @@ const TimeLine = ({ user }) => {
   const [chats, setChats] = useState([]);
 
   useEffect(() => {
-    const q = query(
-      collection(db, "messages"),
-      orderBy("createdAt"),
-      limit(50)
-    );
+    const q = query(collection(db, "messages"), orderBy("createdAt"),limit(50));
     const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
       let chats = [];
-      QuerySnapshot.forEach((doc) => {
-        chats.push({ ...doc.data(), id: doc.id });
-      });
+      QuerySnapshot.forEach((doc) => {chats.push({ ...doc.data(), id: doc.id });});
       setChats(chats);
     });
     return () => unsubscribe;
@@ -29,7 +23,7 @@ const TimeLine = ({ user }) => {
 
   console.log(chats)
   return (
-    <div className="w-[80%] bg-text relative overflow-y-scroll timeline">
+    <div className="w-[80%] bg-text relative overflow-scroll timeline">
       <div className="h-[4rem] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 p-4 sticky top-0">
         <div className="flex justify-between items-center">
           <img src={user.photoURL} alt="" className="h-[35px] rounded-[50%]" />
@@ -47,7 +41,9 @@ const TimeLine = ({ user }) => {
         {chats?.map((chat)=>(<Messages key={chats.id} text={chat.text}/>))}
         </div>
       </div>
-      <Input />
+      <div className="absolute bottom-0 w-full">
+        <Input />
+      </div>
     </div>
   );
 };

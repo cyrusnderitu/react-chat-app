@@ -24,7 +24,7 @@ const Input = () => {
   };
 
    return (
-    <div className="sticky bottom-0 w-full">
+    <div className="w-full">
       <div className="cont bg-slate-200 h-14 p-4 rounded-t-xl">
         <form className="flex items-center justify-between" onSubmit={(event) => sendMessage(event)}>
           <input
