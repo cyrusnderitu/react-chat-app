@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { auth, db } from "../../firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
 
 const Input = () => {
   const [message, setMessage] = useState("");
@@ -17,12 +17,11 @@ const Input = () => {
       text: message,
       name: displayName,
       avatar: photoURL,
-      createdAt: serverTimestamp(),
+      createdAt: Timestamp.fromDate(new Date()),
       uid,
     });
     setMessage("");
   };
-
    return (
     <div className="w-full">
       <div className="cont bg-slate-200 h-14 p-4 rounded-t-xl">
