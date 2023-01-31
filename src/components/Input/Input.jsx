@@ -20,7 +20,9 @@ const Input = () => {
       createdAt: Timestamp.fromDate(new Date()),
       uid,
     });
+    console.log("Before setting messages to empty file", message)
     setMessage("");
+    console.log("After setting messages to empty file", message)
   };
    return (
     <div className="w-full">
@@ -31,7 +33,7 @@ const Input = () => {
             name=""
             id=""
             placeholder="Type something ..."
-            className=" indent-8 w-full bg-transparent outline-none text-gray-800"
+            className=" indent-8 w-[calc(100%-100px)] bg-transparent outline-none text-gray-800 h-fit"
             onChange={(e) => setMessage(e.target.value)}
           />
           <div className="">
