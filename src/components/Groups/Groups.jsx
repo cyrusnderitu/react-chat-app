@@ -18,7 +18,7 @@ const Groups = ({user}) => {
           />
       </div>
 
-      <div className="cont gap-4 flex flex-col justify-between">
+      <div className="cont gap-4 flex flex-col justify-between mt-12">
               <div className="flex justify-between items-start hover:bg-slate-600 py-4 px-2 rounded-lg mr-6 hover:cursor-pointer">
                 <div className="flex items-center gap-x-2">
                   <span className="h-[40px] w-[40px] flex items-center justify-center bg-[#09370c] rounded-[50%] text-2xl text-slate-200 font-bold">#</span>
