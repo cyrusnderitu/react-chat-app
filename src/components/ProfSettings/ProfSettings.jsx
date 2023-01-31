@@ -102,9 +102,9 @@ const ProfSettings = ({ user }) => {
             </div>
             <div className={`${active == "help" && current ? "p-2": 'h-0'}`}>
               <div className="cont grid gap-2">
-                <p className="font-semibold text-white py-4">FAQ's</p>
-                <p className="font-semibold text-white py-4 border-t-2 border-gray-500 border-b-2">Contacts</p>
-                <p className="font-semibold text-white py-4">Terms & Privacy policy</p>
+                <p className="font-semibold text-white py-4 cursor-pointer">FAQ's</p>
+                <p className="font-semibold text-white py-4 cursor-pointer border-t-2 border-gray-500 border-b-2">Contacts</p>
+                <p className="font-semibold text-white py-4 cursor-pointer">Terms & Privacy policy</p>
               </div>
             </div>
           </div>

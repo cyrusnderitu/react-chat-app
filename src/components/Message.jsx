@@ -11,7 +11,7 @@ const Message = ({active, user}) => {
     <div className='w-[40%] bg-[#32612D] rounded-r-lg p-8 h-screen overflow-hidden'>
         {active == 'chats'? (<Chats user={user}/>):""}
         {active == 'profile'? (<Profile user={user}/>):""}
-        {active == 'groups'? (<Groups />):""}
+        {active == 'groups'? (<Groups user={user}/>):""}
         {active == 'contacts'? (<Contacts />):""}
         {active == 'settings'? (<ProfSettings user={user}/>):""}
     </div>
