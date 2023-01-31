@@ -5,6 +5,8 @@ const ProfSettings = ({ user }) => {
 
   const [active, setActive] = useState(null)
   const [current, setCurrent] = useState(false)
+  const [change, setChange] = useState(false)
+  const [toggle, setToggle] = useState(false)
 
   return (
     <div>
@@ -16,7 +18,7 @@ const ProfSettings = ({ user }) => {
           </div>
           <img
             src={user.photoURL}
-            alt=""
+            alt="prof-image"
             className="rounded-[50%] w-14 absolute -bottom-8 left-0 right-0 mx-auto"
           />
         </div>
@@ -50,10 +52,46 @@ const ProfSettings = ({ user }) => {
                 <BiDownArrow className={`${active == "privacy" && current ? "rotate-180": ''} cursor-pointer`}/>
               </h1>
             </div>
-            <p className={`${active == "privacy" && current ? "p-2": 'h-0'}`}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
-              numquam. Doloribus, nobis.
-            </p>
+            <div className={`${active == "privacy" && current ? "p-2": 'h-0'}`}>
+              <div className="grid gap-6">
+                <div className="flex items-center justify-between">
+                  <p className="text-white font-semibold">Profile Photo</p>
+                  <select name="" id="" className="bg-slate-500 outline-none rounded-md text-sm hover:cursor-pointer p-1">
+                    <option value="everyone">Everyone</option>
+                    <option value="contacts">Contacts</option>
+                    <option value="none">None</option>
+                  </select>
+                </div>
+                <div className="flex justify-between items-center">
+                  <p className="font-semibold text-white">Last Seen</p>
+                  <div className={` ${change ? "justify-end": "justify-start"} w-[40px] h-[20px] bg-sky-500 rounded-[20px] p-1 flex items-center hover:cursor-pointer`} onClick={()=>{setChange(!change)}}>
+                    <div className="w-[12px] h-[12px] bg-white rounded-[50%]"></div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="text-white font-semibold">Status</p>
+                  <select name="" id="" className="bg-slate-500 outline-none rounded-md text-sm hover:cursor-pointer p-1">
+                    <option value="everyone">Everyone</option>
+                    <option value="contacts">Contacts</option>
+                    <option value="none">None</option>
+                  </select>
+                </div>
+                <div className="flex justify-between items-center">
+                  <p className="font-semibold text-white">Read receipts</p>
+                  <div className={` ${toggle ? "justify-end": "justify-start"} w-[40px] h-[20px] bg-sky-500 rounded-[20px] p-1 flex items-center hover:cursor-pointer`} onClick={()=>{setToggle(!toggle)}}>
+                    <div className="w-[12px] h-[12px] bg-white rounded-[50%]"></div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="text-white font-semibold">Groups</p>
+                  <select name="" id="" className="bg-slate-500 outline-none rounded-md text-sm hover:cursor-pointer p-1">
+                    <option value="everyone">Everyone</option>
+                    <option value="contacts">Contacts</option>
+                    <option value="none">None</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="border-[1px] border-gray-500 rounded-md overflow-hidden">
             <div className="header hover:cursor-pointer" onClick={()=>{setActive("help"); if(active == "help"){setCurrent(!current)}}}>
@@ -62,10 +100,13 @@ const ProfSettings = ({ user }) => {
                 <BiDownArrow className={`${active == "help" && current ? "rotate-180": ''} cursor-pointer`}/>
               </h1>
             </div>
-            <p className={`${active == "help" && current ? "p-2": 'h-0'}`}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
-              numquam. Doloribus, nobis.
-            </p>
+            <div className={`${active == "help" && current ? "p-2": 'h-0'}`}>
+              <div className="cont grid gap-2">
+                <p className="font-semibold text-white py-4">FAQ's</p>
+                <p className="font-semibold text-white py-4 border-t-2 border-gray-500 border-b-2">Contacts</p>
+                <p className="font-semibold text-white py-4">Terms & Privacy policy</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

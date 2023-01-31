@@ -33,18 +33,16 @@ const TimeLine = ({ user }) => {
   }, []);
   return (
     <div className="w-[80%] bg-text relative overflow-y-scroll timeline">
-      <div className="h-[4rem] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 p-4 sticky top-0">
+      <div className="h-[4rem] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 p-4 sticky top-0 z-20">
         <div className="flex justify-between items-center">
           <img src={user.photoURL} alt="" className="h-[35px] rounded-[50%]" />
-
           <div className="flex items-center gap-4">
-            <FcVideoCall className="text-2xl" />
-            <FcCallback className="text-2xl" />
-            <BiDotsVerticalRounded className="text-2xl text-white" />
+            <FcVideoCall className="text-2xl hover:cursor-pointer" />
+            <FcCallback className="text-2xl hover:cursor-pointer" />
+            <BiDotsVerticalRounded className="text-2xl text-white hover:cursor-pointer" />
           </div>
         </div>
       </div>
-
       <div className="">
         <div className="text px-4 py-8 flex flex-col gap-y-12 items-end">
           {chats?.map((chat) => (
@@ -52,7 +50,7 @@ const TimeLine = ({ user }) => {
           ))}
         </div>
       </div>
-      <div className="fixed bottom-0 w-[calc(100%-500px)]">
+      <div className="sticky bottom-0 w-[calc(100%)]">
         <Input />
       </div>
     </div>
