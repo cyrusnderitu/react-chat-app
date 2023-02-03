@@ -1,12 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import {BsSearch, BsPlus} from 'react-icons/bs'
+import { UserContext } from "../../userContext";
 
-const Chats = ({user}) => {
+const Chats = () => {
 
   const f =Intl.DateTimeFormat("en-us", {
     dateStyle: 'short'
   })
-  
+
+  const user = useContext(UserContext);
+
   return (
     <div className="h-full">
       <div className="cont h-full">

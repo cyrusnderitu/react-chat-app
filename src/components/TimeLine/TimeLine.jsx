@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { FcVideoCall, FcCallback } from "react-icons/fc";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import Input from "../Input/Input";
@@ -12,10 +12,12 @@ import {
   limit,
 } from "firebase/firestore";
 import { db } from "../../firebase";
+import { UserContext } from "../../userContext";
 
-const TimeLine = ({ user }) => {
+const TimeLine = () => {
   const [chats, setChats] = useState([]);
 
+  const user = useContext(UserContext);
   useEffect(() => {
     const q = query(
       collection(db, "messages"),

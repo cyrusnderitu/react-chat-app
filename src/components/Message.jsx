@@ -5,15 +5,15 @@ import Groups from './Groups/Groups'
 import Contacts from './Contacts/Contacts'
 import ProfSettings from './ProfSettings/ProfSettings'
 
-const Message = ({active, user}) => {
+const Message = ({active}) => {
 
   return (
     <div className='w-[40%] bg-[#32612D] rounded-r-lg p-8 h-screen overflow-hidden'>
-        {active == 'chats'? (<Chats user={user}/>):""}
-        {active == 'profile'? (<Profile user={user}/>):""}
-        {active == 'groups'? (<Groups user={user}/>):""}
+        {active == 'chats'? (<Chats />):""}
+        {active == 'profile'? (<Profile />):""}
+        {active == 'groups'? (<Groups />):""}
         {active == 'contacts'? (<Contacts />):""}
-        {active == 'settings'? (<ProfSettings user={user}/>):""}
+        {active == 'settings'? (<ProfSettings />):""}
     </div>
   )
 }

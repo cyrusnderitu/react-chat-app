@@ -1,9 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
 import { RxAvatar } from "react-icons/rx";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Register = ({changeAcc}) => {
+
+  const [email, setEmail] = useState("")
+  const [password, setPass] = useState("")
+
+  const auth = getAuth();
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  }
   return (
     <div>
       <div className="cont">
@@ -11,7 +28,7 @@ const Register = ({changeAcc}) => {
         <p className="text-gray-600 text-center mb-4 text-md">
           Register for an Account with Connect
         </p>
-        <form className="text-gray-600 bg-[#8A9A5B] shadow-2xl p-8 w-full text-[16px] grid gap-6 mb-8 font-semibold outline-none">
+        <form className="text-gray-600 bg-[#8A9A5B] shadow-2xl p-8 w-full text-[16px] grid gap-6 mb-8 font-semibold outline-none" onSubmit={()=>{handleSubmit}}>
           <div className="grid gap-1">
             <label htmlFor="Mail">Email</label>
             <div className="flex items-center gap-2 bg-[#636f3f] p-2 rounded-md border-[1px] border-gray-400">
@@ -19,8 +36,10 @@ const Register = ({changeAcc}) => {
               <input
                 type="email"
                 id="Email"
+                value={email}
                 placeholder="example@email.com"
                 className="w-full indent-2 bg-transparent outline-none"
+                onChange={(e)=>{setEmail(e.target.value)}}
               />
             </div>
           </div>

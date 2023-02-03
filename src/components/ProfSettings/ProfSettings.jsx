@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { BiDotsVerticalRounded, BiDownArrow } from "react-icons/bi";
 
-const ProfSettings = ({ user }) => {
+const ProfSettings = () => {
 
   const [active, setActive] = useState(null)
   const [current, setCurrent] = useState(false)
   const [change, setChange] = useState(false)
   const [toggle, setToggle] = useState(false)
+
+  const user = useContext(userContext);
 
   return (
     <div>

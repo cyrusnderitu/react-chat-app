@@ -30,8 +30,7 @@ const Input = () => {
         <form className="flex items-center justify-between" onSubmit={(event) => sendMessage(event)}>
           <input
             type="text"
-            name=""
-            id=""
+            value={message}
             placeholder="Type something ..."
             className=" indent-8 w-[calc(100%-100px)] bg-transparent outline-none text-gray-800 h-fit"
             onChange={(e) => setMessage(e.target.value)}

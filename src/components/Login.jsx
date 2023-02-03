@@ -3,7 +3,7 @@ import { RxAvatar } from "react-icons/rx";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
 import {auth} from '../firebase'
-import {GoogleAuthProvider, signInWithRedirect} from 'firebase/auth'
+import {GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword} from 'firebase/auth'
 import {useAuthState} from 'react-firebase-hooks/auth'
 
 const Login = ({ changeAcc, SignIn }) => {
@@ -11,6 +11,18 @@ const Login = ({ changeAcc, SignIn }) => {
   const [user, loading, error] = useAuthState(auth)
   const provider = new GoogleAuthProvider();
 
+  const emailLogin = ()=>{
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  }
   const GoogleSignIn = ()=>{
     signInWithRedirect(auth, provider)
   }
@@ -23,7 +35,7 @@ const Login = ({ changeAcc, SignIn }) => {
         <p className="text-gray-700 text-center mb-4 text-md">
           Sign in with connect to continue
         </p>
-        <form className="text-gray-500 bg-[#8A9A5B] shadow-2xl p-8 w-full text-[16px] grid gap-6 mb-8">
+        <form className="text-gray-500 bg-[#8A9A5B] shadow-2xl p-8 w-full text-[16px] grid gap-6 mb-8" onClick={()=>{emailLogin}}>
           <div className="grid gap-1">
             <label htmlFor="Email">Username</label>
             <div className="flex items-center gap-2 bg-[#636f3f] p-2 rounded-md border-[1px] border-gray-400">

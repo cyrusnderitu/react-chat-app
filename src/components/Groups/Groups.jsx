@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {BsSearch, BsPlus} from 'react-icons/bs'
+import { UserContext } from "../../userContext";
 
-const Groups = ({user}) => {
+const Groups = () => {
+
+  const user = useContext(UserContext);
+
   return (
     <div>
       <div className='flex items-center justify-between mb-10'>

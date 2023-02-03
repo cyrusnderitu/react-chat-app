@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import {RxAvatar} from 'react-icons/rx'
 import {AiOutlineMail} from 'react-icons/ai'
 import {BiDotsVerticalRounded} from 'react-icons/bi'
+import { UserContext } from "../../userContext";
 
-const Profile = ({ user }) => {
-  console.log(user);
+const Profile = () => {
+  
+  const user = useContext(UserContext);
   return (
     <div>
       <div className="relative h-[150px] bg-prof w-[calc(100% + 4rem)] -ml-8 -mr-8 -mt-8 mb-12">
