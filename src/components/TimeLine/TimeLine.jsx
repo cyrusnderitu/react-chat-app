@@ -33,6 +33,7 @@ const TimeLine = () => {
     });
     return () => unsubscribe;
   }, []);
+
   return (
     <div className="w-[80%] bg-text relative overflow-y-scroll timeline">
       <div className="h-[4rem] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 p-4 sticky top-0 z-20">
@@ -52,7 +53,7 @@ const TimeLine = () => {
           ))}
         </div>
       </div>
-      <div className="sticky bottom-0 w-[calc(100%)]">
+      <div className="fixed bottom-0 w-[calc(100%-500px)]">
         <Input />
       </div>
     </div>

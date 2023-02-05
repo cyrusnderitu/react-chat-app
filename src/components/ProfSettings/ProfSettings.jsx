@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { BiDotsVerticalRounded, BiDownArrow } from "react-icons/bi";
+import { UserContext } from "../../userContext";
 
 const ProfSettings = () => {
 
@@ -8,7 +9,7 @@ const ProfSettings = () => {
   const [change, setChange] = useState(false)
   const [toggle, setToggle] = useState(false)
 
-  const user = useContext(userContext);
+  const user = useContext(UserContext);
 
   return (
     <div>

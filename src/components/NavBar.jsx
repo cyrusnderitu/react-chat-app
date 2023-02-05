@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
@@ -11,9 +11,11 @@ import {AiFillSetting, AiOutlinePoweroff} from 'react-icons/ai'
 import {TiContacts} from 'react-icons/ti'
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import {ImProfile} from "react-icons/im"
+import { UserContext } from "../userContext";
 
 const NavBar = ({active, handleChange}) => {
-  const [user, loading, error] = useAuthState(auth);
+
+  const user = useContext(UserContext)
   const [theme, setTheme] = useState(true)
   const [show, setShow] = useState(false)
 
@@ -40,7 +42,7 @@ const NavBar = ({active, handleChange}) => {
       <div className="flex flex-col items-center gap-6">
         <a>{theme? (<BsFillSunFill className="text-3xl hover:cursor-pointer"/>): (<BsFillMoonFill className="text-3xl hover:cursor-pointer"/>)}</a>
         <a className="relative">
-          <img src={user.photoURL} alt="" className="h-[35px] rounded-[50%] hover:cursor-pointer" onClick={()=>{setShow(!show)}}/>
+          <img src={user.photoURL} alt="nav-img" className="h-[35px] rounded-[50%] hover:cursor-pointer" onClick={()=>{setShow(!show)}}/>
           {show && <div className="absolute left-12 bottom-0 p-2 bg-slate-600 w-[100px] grid gap-2 rounded-r-2xl rounded-tl-2xl">
             <a className="flex items-center gap-1 hover:cursor-pointer">
               <ImProfile />

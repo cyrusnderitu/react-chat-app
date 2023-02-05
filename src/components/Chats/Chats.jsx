@@ -9,7 +9,6 @@ const Chats = () => {
   })
 
   const user = useContext(UserContext);
-
   return (
     <div className="h-full">
       <div className="cont h-full">
