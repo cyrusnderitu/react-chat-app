@@ -12,6 +12,13 @@
 html{
     scroll-behavior: smooth;
 }
+input:focus{
+    background: transparent;
+}
+input{
+    outline: none;
+    color: white;
+}
 .active{
     padding: 8px;
     background-color: cadetblue;

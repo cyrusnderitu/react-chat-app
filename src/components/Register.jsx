@@ -1,57 +1,74 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { RxAvatar } from "react-icons/rx";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {auth} from '../firebase'
+import { createUserWithEmailAndPassword, } from "firebase/auth";
 
-const Register = ({changeAcc}) => {
+const Register = ({ changeAcc }) => {
+  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [email, setEmail] = useState("")
-  const [password, setPass] = useState("")
-
-  const auth = getAuth();
-  createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
   const handleSubmit = (event) => {
-    event.preventDefault();
-  }
+    event.preventDefault()
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("The user created is: ", user);
+      })
+      .then()
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+      setEmail("")
+      setPassword("")
+  };
   return (
     <div>
       <div className="cont">
-        <h4 className="text-gray-300 text-center font-semibold text-xl">Register</h4>
+        <h4 className="text-gray-300 text-center font-semibold text-xl">
+          Register
+        </h4>
         <p className="text-gray-600 text-center mb-4 text-md">
           Register for an Account with Connect
         </p>
-        <form className="text-gray-600 bg-[#8A9A5B] shadow-2xl p-8 w-full text-[16px] grid gap-6 mb-8 font-semibold outline-none" onSubmit={()=>{handleSubmit}}>
+        <form
+          className="text-gray-600 bg-[#8A9A5B] shadow-2xl p-8 w-full text-[16px] grid gap-6 mb-8 font-semibold outline-none"
+          onSubmit={handleSubmit}
+        >
           <div className="grid gap-1">
             <label htmlFor="Mail">Email</label>
             <div className="flex items-center gap-2 bg-[#636f3f] p-2 rounded-md border-[1px] border-gray-400">
               <AiOutlineMail className="text-gray-300 w-[10%] border-r-2 border-r-gray-400" />
               <input
                 type="email"
-                id="Email"
+                id="Mail"
                 value={email}
                 placeholder="example@email.com"
-                className="w-full indent-2 bg-transparent outline-none"
-                onChange={(e)=>{setEmail(e.target.value)}}
+                className="w-full indent-2 bg-transparent outline-none text-white"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
             </div>
           </div>
           <div className="grid gap-1">
-            <label htmlFor="Email">Username</label>
+            <label htmlFor="username">Username</label>
             <div className="flex items-center gap-2 bg-[#636f3f] p-2 rounded-md border-[1px] border-gray-400">
               <RxAvatar className="text-gray-300 w-[10%] border-r-2 border-r-gray-400" />
               <input
-                type="email"
-                id="Email"
-                placeholder="Enter Username"
-                className="w-full indent-2 bg-transparent outline-none"
+                type="text"
+                name=""
+                id="username"
+                value={userName}
+                className="w-full indent-2 bg-transparent outline-none text-white focus:bg-red"
+                placeholder="Enter username"
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -63,7 +80,11 @@ const Register = ({changeAcc}) => {
                 type="password"
                 name=""
                 id="pass"
+                value={password}
                 className="w-full indent-2 bg-transparent outline-none"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -79,15 +100,31 @@ const Register = ({changeAcc}) => {
               />
             </div>
           </div>
-          <button className="font-semibold text-gray-300 bg-blue-600 py-2 rounded-md">
+          <button className="font-semibold text-gray-300 bg-blue-600 py-2 rounded-md" type="submit">
             Sign Up
           </button>
           <div className="flex gap-2 items-start">
-            <input type="checkbox" name="" id="" required/>
-            <p className="-mt-1"> By Registering you agree to <span className="text-green-500 hover:cursor-pointer">Terms of Use</span></p>
+            <input type="checkbox" name="" id="" required />
+            <p className="-mt-1">
+              {" "}
+              By Registering you agree to{" "}
+              <span className="text-green-500 hover:cursor-pointer">
+                Terms of Use
+              </span>
+            </p>
           </div>
         </form>
-        <p className="text-center">Already have an existin account ? <span className="text-green-500 hover:cursor-pointer" onClick={()=>{changeAcc()}}>Signin</span></p>
+        <p className="text-center">
+          Already have an existin account ?
+          <span
+            className="text-green-500 hover:cursor-pointer"
+            onClick={() => {
+              changeAcc();
+            }}
+          >
+            Signin
+          </span>
+        </p>
       </div>
     </div>
   );

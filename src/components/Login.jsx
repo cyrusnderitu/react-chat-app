@@ -1,30 +1,37 @@
-import React from "react";
+import React, {useState} from "react";
 import { RxAvatar } from "react-icons/rx";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
 import {auth} from '../firebase'
-import {GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword} from 'firebase/auth'
 import {useAuthState} from 'react-firebase-hooks/auth'
+import {GoogleAuthProvider, signInWithRedirect, signInWithEmailAndPassword} from 'firebase/auth'
 
 const Login = ({ changeAcc, SignIn }) => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   const [user, loading, error] = useAuthState(auth)
   const provider = new GoogleAuthProvider();
+  
+  const handleSubmit = (event) => {
+    event.preventDefault()
 
-  const emailLogin = ()=>{
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in 
         const user = userCredential.user;
-        // ...
+        console.log(user)
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        alert(errorMessage)
       });
+      setEmail("")
+      setPassword("")
   }
   const GoogleSignIn = ()=>{
     signInWithRedirect(auth, provider)
+    .then(update)
   }
   return (
     <div className="">
@@ -35,7 +42,7 @@ const Login = ({ changeAcc, SignIn }) => {
         <p className="text-gray-700 text-center mb-4 text-md">
           Sign in with connect to continue
         </p>
-        <form className="text-gray-500 bg-[#8A9A5B] shadow-2xl p-8 w-full text-[16px] grid gap-6 mb-8" onClick={()=>{emailLogin}}>
+        <form className="text-gray-500 bg-[#8A9A5B] shadow-2xl p-8 w-full text-[16px] grid gap-6 mb-8" onSubmit={handleSubmit}>
           <div className="grid gap-1">
             <label htmlFor="Email">Username</label>
             <div className="flex items-center gap-2 bg-[#636f3f] p-2 rounded-md border-[1px] border-gray-400">
@@ -43,8 +50,10 @@ const Login = ({ changeAcc, SignIn }) => {
               <input
                 type="email"
                 id="Email"
+                value={email}
                 placeholder="Enter Username/Email"
-                className="w-full indent-2 bg-transparent outline-none"
+                className="w-full indent-2 bg-transparent outline-none text-white"
+                onChange={(e)=>{setEmail(e.target.value)}}
                 required
               />
             </div>
@@ -57,7 +66,9 @@ const Login = ({ changeAcc, SignIn }) => {
                 type="password"
                 name=""
                 id="pass"
+                value={password}
                 className="w-full indent-2 bg-transparent outline-none"
+                onChange={(e)=>{setPassword(e.target.value)}}
                 required
               />
             </div>
@@ -72,7 +83,7 @@ const Login = ({ changeAcc, SignIn }) => {
               <span> Remember Me</span>
             </div>
           </div>
-          <button className="font-semibold text-gray-300 bg-blue-600 py-2 rounded-md">
+          <button className="font-semibold text-gray-300 bg-blue-600 py-2 rounded-md" type="submit">
             Sign In
           </button>
 
