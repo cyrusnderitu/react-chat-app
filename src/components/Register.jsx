@@ -3,28 +3,36 @@ import { RxAvatar } from "react-icons/rx";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordFill } from "react-icons/ri";
 import {auth} from '../firebase'
-import { createUserWithEmailAndPassword, } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
 
 const Register = ({ changeAcc }) => {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("The user created is: ", user);
+    if(password === confirm){
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          updateProfile(userCredential.user, {displayName : {userName}})
+          console.log("The user contains, ", user)   
       })
-      .then()
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
       setEmail("")
+    }
+    else{
+      alert("Passwords do not match")
+    }
       setPassword("")
+      setUserName("")
+      setConfirm("")
   };
   return (
     <div>
