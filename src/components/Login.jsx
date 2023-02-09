@@ -19,6 +19,7 @@ const Login = ({ changeAcc, SignIn }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log("User", user)
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -27,6 +28,10 @@ const Login = ({ changeAcc, SignIn }) => {
       });
       setEmail("")
       setPassword("")
+  }
+
+  if(user){
+    console.log(user)
   }
   const GoogleSignIn = ()=>{
     signInWithRedirect(auth, provider)

@@ -5,6 +5,7 @@ import {auth} from '../firebase'
 import Login from '../components/Login'
 import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 import Register from "./Register";
+import {useAuthState} from 'react-firebase-hooks/auth'
 
 const Welcome = () => {
 

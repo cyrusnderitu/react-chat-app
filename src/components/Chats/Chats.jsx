@@ -9,6 +9,7 @@ const Chats = () => {
   })
 
   const user = useContext(UserContext);
+  console.log("The users in chat is : ", user)
   return (
     <div className="h-full">
       <div className="cont h-full">

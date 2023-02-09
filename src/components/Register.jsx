@@ -11,28 +11,37 @@ const Register = ({ changeAcc }) => {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
 
+  const avatar = ()=>{
+    return(
+      <RxAvatar />
+    )
+  }
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    if(password === confirm){
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          updateProfile(userCredential.user, {displayName : {userName}})
-          console.log("The user contains, ", user)   
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        updateProfile(userCredentials.user, {
+          displayName: `${userName}`,
+          photoURL: `${avatar}`
+        })
+        console.log(userCredentials.user)
       })
+      .then(()=>
+        {
+          console.log("the username is : ", userName)
+          console.log("the current user : ", auth.currentUser)
+          setUserName("")
+        }
+      )
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
       setEmail("")
-    }
-    else{
-      alert("Passwords do not match")
-    }
       setPassword("")
-      setUserName("")
-      setConfirm("")
+      setConfirm()
+      
   };
   return (
     <div>
@@ -114,7 +123,6 @@ const Register = ({ changeAcc }) => {
           <div className="flex gap-2 items-start">
             <input type="checkbox" name="" id="" required />
             <p className="-mt-1">
-              {" "}
               By Registering you agree to{" "}
               <span className="text-green-500 hover:cursor-pointer">
                 Terms of Use
