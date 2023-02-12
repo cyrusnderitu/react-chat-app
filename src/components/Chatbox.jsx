@@ -2,8 +2,6 @@ import React, {useState} from 'react'
 import NavBar from './NavBar'
 import Message from './Message'
 import TimeLine from './TimeLine/TimeLine'
-import {auth} from '../firebase'
-import {useAuthState} from 'react-firebase-hooks/auth'
 
 const ChatBox = () => {
   const [active, setActive] = useState("chats")

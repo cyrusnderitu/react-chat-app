@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
-import {BsSearch, BsPlus} from 'react-icons/bs'
+import {BsPlus} from 'react-icons/bs'
 import { UserContext } from "../../userContext";
+import Search from "../Search";
 
 const Chats = () => {
 
@@ -9,7 +10,6 @@ const Chats = () => {
   })
 
   const user = useContext(UserContext);
-  console.log("The users in chat is : ", user)
   return (
     <div className="h-full">
       <div className="cont h-full">
@@ -17,14 +17,7 @@ const Chats = () => {
           <h1 className="font-bold text-2xl text-white ">Chats</h1>
           <BsPlus className="text-white text-3xl hover:cursor-pointer p-[2px] rounded-sm hover:bg-lime-400"/>
         </div>
-        <div className="flex items-center w-full border-none bg-gray-600 rounded-md p-2">
-          <BsSearch className="text-xl" />
-          <input
-            type="text"
-            placeholder="Search messages or users"
-            className="border-none outline-none w-full text-gray-400 bg-transparent indent-4"
-          />
-        </div>
+        <Search />
         {/* <h1 className="text-2xl text-white my-8">Recent</h1>
         <div className="flex gap-2 justify-between">
           <div className="bg-slate-400 rounded-lg p-2 flex flex-col items-center">

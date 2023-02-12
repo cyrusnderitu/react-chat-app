@@ -34,7 +34,7 @@ const Register = ({ changeAcc }) => {
           email: user.email
         })
       })
-      .then((userCredentials)=>
+      .then(()=>
         {
           setUserName("")
           setEmail("")

@@ -20,14 +20,12 @@ const Input = () => {
       createdAt: Timestamp.fromDate(new Date()),
       uid,
     });
-    console.log("Before setting messages to empty file", message)
-    setMessage("");
-    console.log("After setting messages to empty file", message)
+    setMessage("")
   };
    return (
     <div className="w-full">
       <div className="cont bg-slate-200 h-14 p-4 rounded-t-xl">
-        <form className="flex items-center justify-between" onSubmit={(event) => sendMessage(event)}>
+        <form className="flex items-center justify-between" onSubmit={sendMessage}>
           <input
             type="text"
             value={message}

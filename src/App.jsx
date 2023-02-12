@@ -14,19 +14,16 @@ function App() {
 
   const CurrentUser = () => {
     if (loading) {
-      console.log("the page is loading.......")
       return (
         <Loading />
       );
     }
     if (!user) {
-      console.log("the user is not found =( ......")
       return (
         <Welcome />
       );
     }
     if (user) {
-      console.log("the user has been found =) ......")
       return (
         <ChatBox />
       );
