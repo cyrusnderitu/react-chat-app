@@ -3,6 +3,8 @@ import { RxAvatar } from "react-icons/rx";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordFill } from "react-icons/ri";
 import {auth} from '../firebase'
+import {db} from '../firebase'
+import {doc, setDoc} from 'firebase/firestore'
 import { createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
 
 const Register = ({ changeAcc }) => {
@@ -20,28 +22,30 @@ const Register = ({ changeAcc }) => {
     event.preventDefault()
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        updateProfile(userCredentials.user, {
+      .then(async (userCredentials)=> {
+        const user = userCredentials.user
+        await updateProfile(user, {
           displayName: `${userName}`,
           photoURL: `${avatar}`
         })
-        console.log(userCredentials.user)
+        await setDoc(doc(db, "users", user.uid),{
+          displayName: user.displayName,
+          uid: user.uid,
+          email: user.email
+        })
       })
-      .then(()=>
+      .then((userCredentials)=>
         {
-          console.log("the username is : ", userName)
-          console.log("the current user : ", auth.currentUser)
           setUserName("")
+          setEmail("")
+          setPassword("")
+          setConfirm("")
         }
       )
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
-      setEmail("")
-      setPassword("")
-      setConfirm()
-      
   };
   return (
     <div>
